@@ -27,4 +27,23 @@ function addProjectDetails(e) {
 	var idNumber = projectID.substr('project'.length);
 
 	console.log("User clicked on project " + idNumber);
+
+	//call the AJAX endpoint YZ
+	$.get('/project/'+idNumber, callBackFn);
+	console.log('/project/'+idNumber);
 }
+
+function callBackFn(result){
+	console.log(result);
+	var projectHTML =
+	 '<p>'+result['title']+'</p>'+
+	 '<p><small>'+result['date']+'</small></p>'+
+	 '<img src="' + result['image'] + '" class="detailsImage">' +
+	 '<p>'+result['summary']+'</p>'
+
+	 $("#project" + result['id'] + " .details").html(projectHTML);
+	 
+		
+
+}
+
